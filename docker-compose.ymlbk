@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    image: php:7.4.13-apache-buster
+    image: php:7.2-apache
     volumes:
       - ../:/var/www/html
     ports:
@@ -26,6 +26,6 @@ services:
     links:
       - mysql
     ports:
-      - 3306:80
+      - 4040:80
     volumes:
       - ./phpmyadmin/sessions:/sessions

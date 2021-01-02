@@ -5,6 +5,7 @@ services:
     image: php:7.4.13-apache-buster
     volumes:
       - ../:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
     ports:
       - 80:80
   mysql:

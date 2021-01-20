@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    image: php:7.4.13-apache-buster
+    build: ./php
     volumes:
       - ../:/var/www/html
       - ./php.ini:/usr/local/etc/php/php.ini
@@ -12,9 +12,12 @@ services:
     image: mysql:5.7
     volumes:
       - ./mysql:/var/lib/mysql
+    ports: 
+      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=test
+      - DB_SOCKET=/var/run/mysqld/mysqld.sock
+      - MYSQL_DATABASE=cake_demo
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
   phpmyadmin:
@@ -22,11 +25,11 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql
-      - PMA_USER=test
-      - PMA_PASSWORD=test
+      - PMA_USER=root
+      - PMA_PASSWORD=root
     links:
       - mysql
     ports:
-      - 3306:80
+      - 8088:80
     volumes:
       - ./phpmyadmin/sessions:/sessions

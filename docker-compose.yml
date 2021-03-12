@@ -8,6 +8,7 @@ services:
       - ./php.ini:/usr/local/etc/php/php.ini
     ports:
       - 80:80
+      - 443:443
   mysql:
     image: mysql:5.7
     volumes:
